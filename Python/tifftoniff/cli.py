@@ -1,6 +1,7 @@
 import click
 import tifftoniff
 import os
+import glob
 
 @click.command()
 @click.argument('input')
@@ -15,7 +16,10 @@ def run(input, output, stack):
     if not os.path.exists("./" + output):
         os.makedirs("./" + output)
     if stack is not None:
-        pass
+        os.chdir(stack)
+            for file in glob.glob("*.tif"):
+                tiff = tifftoniff.Convert(file, output)
+                tiff.convert()
     else:
         tiff = tifftoniff.Convert(input, output)
         tiff.convert()
