@@ -2,9 +2,12 @@ import click
 import tifftoniff
 import os
 import glob
+from tqdm import tqdm
 
 @click.command()
-@click.argument('input')
+@click.option(
+    '--input', '-i', default=None,
+    help='Tiff file to convert')
 @click.option(
     '--output', '-o', default='_output',
     help='Ouput folder name/path')
@@ -16,10 +19,9 @@ def run(input, output, stack):
     if not os.path.exists("./" + output):
         os.makedirs("./" + output)
     if stack is not None:
-        os.chdir(stack)
-            for file in glob.glob("*.tif"):
-                tiff = tifftoniff.Convert(file, output)
-                tiff.convert()
+        for file in tqdm(glob.glob(stack + "*.tif")):
+            tiff = tifftoniff.Convert(file, output)
+            tiff.convert()
     else:
         tiff = tifftoniff.Convert(input, output)
         tiff.convert()
