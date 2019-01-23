@@ -9,7 +9,7 @@ setup(
     version=tifftoniff.__version__,
     py_modules=['tifftoniff'],
     install_requires=[
-        'Click', 'Tyf'
+        'Click', 'Tyf', 'tqdm'
     ],
     entry_points='''
         [console_scripts]
