@@ -4,3 +4,5 @@ _output
 tifftoniff.egg-info
 tifftoniff/__pycache__
 tifftoniff/*.pyc
+*.tiff
+
