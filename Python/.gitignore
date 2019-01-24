@@ -1,0 +1,6 @@
+build
+dist
+_output
+tifftoniff.egg-info
+tifftoniff/__pycache__
+tifftoniff/*.pyc
