@@ -1,5 +1,5 @@
 import click
-import tifftoniff
+from tifftoniff import Convert
 import os
 import glob
 from tqdm import tqdm
@@ -20,11 +20,11 @@ def main(input, output, stack):
         os.makedirs("./" + output)
     if stack is not None:
         for file in tqdm(glob.glob(stack + "*.tif")):
-            tiff = tifftoniff.Convert(file, output)
+            tiff = Convert(file, output)
             tiff.convert()
     else:
-        tiff = tifftoniff.Convert(input, output)
-        tiff.convert()
+        _tiff = Convert(input, output)
+        _tiff.convert()
 
 if __name__ == '__main__':
     main()
