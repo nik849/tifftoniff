@@ -14,17 +14,19 @@ from tqdm import tqdm
 @click.option(
     '--stack', '-s', default=None,
     help='Path to tif stack to convert')
+@click.option(
+    '--verbose', '-v', is_flag=True)
 
-def main(input, output, stack):
+def main(input, output, stack, verbose):
     if not os.path.exists("./" + output):
         os.makedirs("./" + output)
     if stack is not None:
         for file in tqdm(glob.glob(stack + "*.tif")):
             print(file)
-            tiff = tifftoniff.Convert(file, output)
+            tiff = tifftoniff.Convert(file, output, verbose)
             tiff.convert()
     else:
-        _tiff = tifftoniff.Convert(input, output)
+        _tiff = tifftoniff.Convert(input, output, verbose)
         _tiff.convert()
 
 main()
