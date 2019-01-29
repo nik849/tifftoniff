@@ -28,5 +28,6 @@ def main(input, output, stack, verbose):
     else:
         _tiff = tifftoniff.Convert(input, output, verbose)
         _tiff.convert()
-
-main()
+        
+if __name__ == '__main__':
+    main()
